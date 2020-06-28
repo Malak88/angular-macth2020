@@ -1,0 +1,75 @@
+<app-navbar></app-navbar>
+<div class="container">
+
+    <div class="row">
+
+      <div class="col-lg-2">
+
+        <br>
+        <div class="list-group"> 
+         <a href="#" [routerLink]="['/matches']" class="list-group-item"><i class="fas fa-barcode fa-2x" style="color:MediumSeaGreen"></i><i class="fas fa-futbol" style="color:black"></i>&nbsp;&nbsp;Matchs</a>
+         <a href="#"  [routerLink]="['/equipes']" class="list-group-item"><i class="fas fa-running fa-2x" ></i><i class="fas fa-futbol" style="color:black"></i>&nbsp;&nbsp;&nbsp;Teams</a>
+         <a href="#" [routerLink]="['/arbitres']" class="list-group-item"><i class="fas fa-street-view fa-2x" style="color:Orange"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Referees</a>
+         <!--a href="#" class="list-group-item">Staffs&nbsp;&nbsp;<i class="fas fa-users fa-2x"></i></a-->
+        </div>
+      
+    </div>
+          
+      <!-- /.col-lg-2 -->
+   
+      <div class="col-lg-10">
+    <div class="row">
+        
+        <div class="col">
+            <h1 class="my-4">Update Referee &nbsp;&nbsp;<i class="fas fa-street-view"></i></h1>
+            <div style="width: 400px;">
+                <form (ngSubmit)="onSubmit()" #xform=ngForm>
+                    <div class="form-group">
+                      <label for="name">Name</label>
+                      <input type="text" class="form-control" id="name" required [(ngModel)]="arbitre.name" name="name">
+                    </div>
+                
+                    <div class="form-group">
+                      <label for="phone">Phone</label>
+                      <input type="tel" class="form-control" id="phone" required [(ngModel)]="arbitre.telephone" name="phone">
+                    </div>
+                
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" class="form-control" id="email" required [(ngModel)]="arbitre.email" name="email">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="matche">Match</label>
+                      <br>
+                      <select style="width: 400px;" class="select" ng-disabled="!all" id="equipe" required  name="matches">
+
+                        <option  *ngFor="let m of matches" [value]="m.value">{{m.name}} </option>
+                      </select>
+                   
+                    </div>
+
+                    <div class="row justify-content-between">
+                      <div class="col-4">
+                        <button type="submit" class="btn btn-success"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;Submit</button>
+                      </div>
+                      <div class="col-4">
+                        &nbsp;&nbsp;&nbsp;
+                        <button class=" col align-self-end"(click)="list()"  class="btn btn-danger"> <i class="fas fa-times-circle"></i>&nbsp;Cancel</button>
+                      </div>
+                    </div>
+                    
+                        
+                      
+                        
+                        
+                         
+                     
+                    
+                      
+                    
+                  </form>
+            </div>
+        </div>
+    </div>
+</div>      

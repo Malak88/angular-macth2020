@@ -1,0 +1,51 @@
+<app-navbar></app-navbar>
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-2">
+
+            <br>
+              <div class="list-group"> 
+               <a href="#" [routerLink]="['/matches']" class="list-group-item"><i class="fas fa-barcode fa-2x" style="color:MediumSeaGreen"></i><i class="fas fa-futbol" style="color:black"></i>&nbsp;&nbsp;Matchs</a>
+               <a href="#"  class="list-group-item"><i class="fas fa-running fa-2x" ></i><i class="fas fa-futbol" style="color:black"></i>&nbsp;&nbsp;&nbsp;Teams</a>
+               <a href="#" [routerLink]="['/arbitres']" class="list-group-item"><i class="fas fa-street-view fa-2x" style="color:Orange"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Referees</a>
+               <!--a href="#" class="list-group-item">Staffs&nbsp;&nbsp;<i class="fas fa-users fa-2x"></i></a-->
+              </div>
+          
+        </div>
+        <div class="col-lg-10">
+     <div class="row">
+        <div class="col">
+            <h1 class="my-4">Match Details</h1>
+            <hr/>
+            <div *ngIf="matches">
+              <div>
+                <label><b>Name : </b></label> {{matches.name}}
+              </div>
+              <div>
+                <label><b>Date : </b></label> {{matches.date}}
+              </div>
+              <div>
+                <label><b>Stadium : </b></label> {{matches.stade}}
+              </div> 
+              <div>
+                <label><b>Teams : </b></label> 
+                <ol>
+                    <li *ngFor="let equipe of matches.equipes">{{equipe.name }}</li>
+                 </ol>
+              </div>
+              <div>
+                <label><b>Referees : </b></label>
+                <ol>
+                    <li *ngFor="let arbitre of matches.arbitres">{{arbitre.name }}</li>
+                 </ol>
+              </div> 
+            </div>
+            
+            <br>
+            <br>
+            <button (click)="list()" class="btn btn-primary"><i class="fas fa-backward"> &nbsp;&nbsp;</i>Match List</button><br>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+<app-navbar></app-navbar>
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-2">
+
+            <br>
+            <div class="list-group"> 
+             <a href="#" [routerLink]="['/matches']" class="list-group-item"><i class="fas fa-barcode fa-2x" style="color:MediumSeaGreen"></i><i class="fas fa-futbol" style="color:black"></i>&nbsp;&nbsp;Matchs</a>
+             <a href="#"  [routerLink]="['/equipes']" class="list-group-item"><i class="fas fa-running fa-2x" ></i><i class="fas fa-futbol" style="color:black"></i>&nbsp;&nbsp;&nbsp;Teams</a>
+             <a href="#" [routerLink]="['/arbitres']" class="list-group-item"><i class="fas fa-street-view fa-2x" style="color:Orange"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Referees</a>
+             <!--a href="#" class="list-group-item">Staffs&nbsp;&nbsp;<i class="fas fa-users fa-2x"></i></a-->
+            </div>
+          
+        </div>
+              
+          <!-- /.col-lg-2 -->
+       
+          <div class="col-lg-10">
+    <div class="row">
+        
+        <div class="col">
+            <h1 class="my-4">Matchs List</h1>
+            <button class="btn btn-primary my-3 " [routerLink]="['/addMatches']"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;Add Match</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Match</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Stadium</th>
+                        <th scope="col">Referees</th>
+                        <th scope="col">Teams</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let matche of matches | async">
+                        <th scope="row">{{matche.id}}</th>
+                        <td>{{matche.name}}</td>
+                        <td>{{matche.date}}</td>
+                        <td>{{matche.stade}}</td>
+                        <td>
+                            <ul>
+                               <li *ngFor="let arbitre of matche.arbitres">{{arbitre.name }}</li>
+                            </ul>
+                         </td>
+                         <td>
+                             <ul>
+                                <li *ngFor="let equipe of matche.equipes">{{equipe.name}}</li>
+                             </ul>
+
+                         </td>
+                        <td>
+                            <button (click)="matchesDetails(matche.id)" class="btn btn-info"><i class="fas fa-info-circle"></i></button>
+                            <button  (click)="updateMatches(matche.id)" class="btn btn-warning" style="margin-left: 10px"> <i class="fas fa-edit"></i></button>
+                            <button (click)="deleteMatches(matche.id)" class="btn btn-danger"style="margin-left: 10px"><i class="fas fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+     </div>
+    </div>
+</div>  

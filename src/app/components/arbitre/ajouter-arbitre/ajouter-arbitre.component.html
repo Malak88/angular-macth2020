@@ -1,0 +1,110 @@
+<app-navbar></app-navbar>
+<div class="container">
+
+    <div class="row">
+
+      <div class="col-lg-2">
+
+        <br>
+        <div class="list-group"> 
+         <a href="#" [routerLink]="['/matches']" class="list-group-item"><i class="fas fa-barcode fa-2x" style="color:MediumSeaGreen"></i><i class="fas fa-futbol" style="color:black"></i>&nbsp;&nbsp;Matchs</a>
+         <a href="#"  [routerLink]="['/equipes']" class="list-group-item"><i class="fas fa-running fa-2x" ></i><i class="fas fa-futbol" style="color:black"></i>&nbsp;&nbsp;&nbsp;Teams</a>
+         <a href="#" [routerLink]="['/arbitres']" class="list-group-item"><i class="fas fa-street-view fa-2x" style="color:Orange"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Referees</a>
+         <!--a href="#" class="list-group-item">Staffs&nbsp;&nbsp;<i class="fas fa-users fa-2x"></i></a-->
+        </div>
+      
+    </div>
+          
+      <!-- /.col-lg-2 -->
+   
+    <div class="col-lg-10">
+     <div class="row">
+        <div class="col">
+            <h1 class="my-4">Create Referee &nbsp;&nbsp;<i class="fas fa-street-view"></i></h1>
+        
+            <div [hidden]="submitted" style="width: 400px;">
+                <form [formGroup]="arbitresaveform" #xform=ngForm (ngSubmit)="xform.form.valid&&savearbitre()" novalidate>
+
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" formControlName="name" data-toggle="tooltip" data-placement="right"
+                    title="Enter Name" name="name">
+                    <span class="text-danger"
+                     *ngIf="(name.touched || xform.submitted) && name.errors?.required">
+                      Name is required
+                </span>
+                <span class="text-danger"
+                     *ngIf="(name.touched || xform.submitted) && name.errors?.minlength">
+                      Name  must be at least 4 characters long.
+                </span>
+                  </div>
+                  <!--div class="form-group">
+                    <label for="phone">Phone</label>
+                    <ng-container *ngIf="countries">
+                      <select (change)="resetPhoneNumber($event)" [(ngModel)]="selectedCountry" [ngModelOptions]="{standalone: true}">
+                       <option *ngFor="let country of countries" [ngValue]="country.code">{{country.name}}</option>
+                      </select>
+                    </ng-container>
+                    <input type="text" (input)="formatPhoneNumber($event)"class="form-control"data-toggle="tooltip" data-placement="right" formControlName="phone">
+                  </div-->
+              
+                  <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" class="form-control" formControlName="phone" data-toggle="tooltip" data-placement="right"
+                    title="Enter Phone" name="phone">
+                    <span class="text-danger"
+                       *ngIf="(phone.touched || xform.submitted) && phone.errors?.required">
+                       Phone is required
+                    </span>
+                    <span class="text-danger" *ngIf="phone.touched && phone.errors?.pattern">
+                      Enter a valid Phone number
+                    </span>
+                  </div>
+                  
+              
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" formControlName="email" data-toggle="tooltip" data-placement="right"
+                    title="Enter Email" name="email">
+                    <span class="text-danger"
+                         *ngIf="(email.touched || xform.submitted) && email.errors?.required">
+                            Email is required
+                    </span>
+                    <span class="text-danger" *ngIf="email.touched && email.errors?.email">
+                      Enter a valid email address: example@example.com
+                    </span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="matche">Match</label>
+                    <br>
+                    <select style="width: 400px;" class="select" ng-disabled="!all" formControlName="matche" class="form-control"data-placement="right" class="align-bottom" name="matches">
+                      <option>Select a match</option>
+                      <option  *ngFor="let m of matches">{{m.name}} </option>
+                    </select>
+                 
+                  </div>
+                
+                <div class="align-bottom"></div>
+                <div class="row justify-content-between">
+                  <div class="col-4">
+                    <button type="submit" class="btn btn-success"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;Submit</button>
+                  </div>
+                  <div class="col-4">
+                    &nbsp;&nbsp;&nbsp;
+                    <button class=" col align-self-end"(click)="list()"  class="btn btn-danger"> <i class="fas fa-times-circle"></i>&nbsp;Cancel</button>
+                  </div>
+                </div>
+                
+                </form>
+              </div>
+              
+              
+              <div [hidden]="!submitted">
+                <h4>You submitted successfully!</h4>
+                <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+              </div>
+        </div>
+        
+     </div>
+    </div>
